@@ -20,15 +20,23 @@ class Instansi extends CI_Controller
 	public function index() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('instansi/index', $push_data);
+		$push_data = array(
+			'page' 			=> 'instansi/index',
+			'breadcrumb'	=> 'Daftar Instansi',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Create() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('instansi/create', $push_data);
+		$push_data = array(
+			'page' 			=> 'instansi/tambah',
+			'breadcrumb'	=> 'Tambah Data Instansi',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Save() {

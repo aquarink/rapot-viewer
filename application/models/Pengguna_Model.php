@@ -7,18 +7,24 @@ class Pengguna_Model extends CI_Model
         $this->load->database();
     }
 
-    public function Cari_Pengguna($id_instansi, $kode_siswa, $password) {        
-        $sql = "SELECT * FROM pengguna_tb WHERE id_instansi = ".$this->db->escape($id_instansi)." AND kode_siswa = ".$this->db->escape($kode_siswa)." AND password = ".$this->db->escape($password)." LIMIT 1";         
+    public function Login_Pengguna($username, $password) {        
+        $sql = "SELECT * FROM pengguna_tb WHERE username = ".$this->db->escape($username)." AND password = ".$this->db->escape($password)." LIMIT 1";         
         $query = $this->db->query($sql);
         return $query->result();
     }
 
-    public function Tambah_Pengguna($id_instansi, $kode_siswa, $password, $role) {
+    public function Cari_Pengguna($id_instansi, $username, $password) {        
+        $sql = "SELECT * FROM pengguna_tb WHERE id_instansi = ".$this->db->escape($id_instansi)." AND username = ".$this->db->escape($username)." AND password = ".$this->db->escape($password)." LIMIT 1";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 
-        $sql = "INSERT INTO pengguna_tb(id_instansi, kode_siswa, password, role) "
+    public function Tambah_Pengguna($id_instansi, $username, $password, $role) {
+
+        $sql = "INSERT INTO pengguna_tb(id_instansi, username, password, role) "
         . "VALUES("
         . "" . $this->db->escape($id_instansi) . ", "
-        . "" . $this->db->escape($kode_siswa) . ", "
+        . "" . $this->db->escape($username) . ", "
         . "" . $this->db->escape($password) . ", "
         . "" . $this->db->escape($role) . ")";
         $this->db->query($sql);
@@ -26,8 +32,8 @@ class Pengguna_Model extends CI_Model
 
     }
 
-    public function Update_Password_Pengguna($id_instansi, $kode_siswa, $password) {
-        $sql = "UPDATE pengguna_tb SET password = ".$this->db->escape($password)." WHERE id_instansi = ".$this->db->escape($id_instansi)." AND kode_siswa = ".$this->db->escape($kode_siswa)."";
+    public function Update_Password_Pengguna($id_instansi, $username, $password) {
+        $sql = "UPDATE pengguna_tb SET password = ".$this->db->escape($password)." WHERE id_instansi = ".$this->db->escape($id_instansi)." AND username = ".$this->db->escape($username)."";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }

@@ -20,15 +20,23 @@ class Siswa extends CI_Controller
 	public function index() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('siswa/index', $push_data);
+		$push_data = array(
+			'page' 			=> 'siswa/index',
+			'breadcrumb'	=> 'Daftar Siswa',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Create() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('siswa/create', $push_data);
+		$push_data = array(
+			'page' 			=> 'siswa/tambah',
+			'breadcrumb'	=> 'Tambah Data Siswa',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Save() {

@@ -20,15 +20,23 @@ class Rapot extends CI_Controller
 	public function index() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('rapot/index', $push_data);
+		$push_data = array(
+			'page' 			=> 'rapot/index',
+			'breadcrumb'	=> 'Dashboard',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Create() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('rapot/create', $push_data);
+		$push_data = array(
+			'page' 			=> 'rapot/tambah',
+			'breadcrumb'	=> 'Tambah Data Rapot',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Save() {

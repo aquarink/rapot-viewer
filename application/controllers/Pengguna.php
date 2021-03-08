@@ -18,17 +18,65 @@ class Pengguna extends CI_Controller
 	}
 
 	public function index() {
-		// sesi_check();
+		if($this->session->userdata('id') != '') {
+			redirect(base_url('dashboard'));
+		}
 
 		$push_data = array();
 		$this->load->view('pengguna/login', $push_data);
 	}
 
-	public function Logout() {
-		// sesi_check();
+	public function Login() {
 
-		$push_data = array();
-		$this->load->view('pengguna/logout', $push_data);
+		$msg = '';
+
+		if($this->input->post('usernameTxt') != '' && $this->input->post('passwordTxt') != '') {
+
+			$usernameTxt = $this->input->post('usernameTxt');
+			$passwordTxt = $this->input->post('passwordTxt');
+
+			$cek_pengguna = $this->Pengguna_Model->Login_Pengguna($usernameTxt, $passwordTxt);
+			if(count($cek_pengguna) > 0) {
+				
+				foreach ($cek_pengguna as $key => $val) {
+					$sess_array = array(
+						'id' 			=> $val->id,
+						'id_instansi' 	=> $val->id_instansi,
+						'username' 		=> $val->username,
+						'role'			=> $val->role
+					);
+
+					$this->session->set_userdata($sess_array);
+
+					redirect(base_url('dashboard'));
+				}
+
+			} else {
+				$msg = 'Username atau password salah';
+			}
+		} else {
+			$msg = 'Form harus diisi';
+		}
+		print_r($this->input->post());
+		if($msg != '') {
+			// redirect(base_url('masuk?msg='.$msg));
+		}
+	}
+
+	public function Dashboard() {
+		$push_data = array(
+			'page' 			=> 'pengguna/index',
+			'breadcrumb'	=> 'Dashboard',
+		);
+
+		$this->load->view('templates/page', $push_data);
+	}
+
+	public function Logout() {
+		if($this->session->userdata('id') != '') {
+			$this->session->sess_destroy();
+			redirect(base_url('masuk'));
+		}
 	}
 
 	public function Create() {

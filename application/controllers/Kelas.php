@@ -20,15 +20,23 @@ class Kelas extends CI_Controller
 	public function index() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('kelas/index', $push_data);
+		$push_data = array(
+			'page' 			=> 'kelas/index',
+			'breadcrumb'	=> 'Daftar Kelas',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Create() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('kelas/create', $push_data);
+		$push_data = array(
+			'page' 			=> 'kelas/tambah',
+			'breadcrumb'	=> 'Tambah Data Kelas',
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Save() {

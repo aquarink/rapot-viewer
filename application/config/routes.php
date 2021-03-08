@@ -56,14 +56,21 @@ $route['translate_uri_dashes'] 	= FALSE;
 // AUTH
 $route['masuk'] 				= 'Pengguna/Login';
 $route['keluar'] 				= 'Pengguna/Logout';
+$route['dashboard'] 			= 'Pengguna/Dashboard';
 
 // PENGGUNA
 $route['ubah-password'] 		= 'Pengguna/UpdatePassword';
 
 // INSTANSI
-$route['instansi'] 				= 'Instansi/Update';
+$route['instansi'] 				= 'Instansi';
+$route['tambah-instansi'] 		= 'Instansi/Create';
+$route['simpan-instansi'] 		= 'Instansi/Save';
+$route['ubah-instansi'] 		= 'Instansi/Edit';
+$route['update-instansi'] 		= 'Instansi/Update';
+$route['hapus-instansi'] 		= 'Instansi/Delete';
 
 // KELAS
+$route['kelas'] 				= 'Kelas';
 $route['tambah-kelas'] 			= 'Kelas/Create';
 $route['simpan-kelas'] 			= 'Kelas/Save';
 $route['ubah-kelas'] 			= 'Kelas/Edit';
@@ -71,6 +78,7 @@ $route['update-kelas'] 			= 'Kelas/Update';
 $route['hapus-kelas'] 			= 'Kelas/Delete';
 
 // SISWA
+$route['siswa'] 				= 'Siswa';
 $route['tambah-siswa'] 			= 'Siswa/Create';
 $route['simpan-siswa'] 			= 'Siswa/Save';
 $route['ubah-siswa'] 			= 'Siswa/Edit';
@@ -78,6 +86,7 @@ $route['update-siswa'] 			= 'Siswa/Update';
 $route['hapus-siswa'] 			= 'Siswa/Delete';
 
 // RAPOT
+$route['rapot'] 				= 'Rapot';
 $route['tambah-rapot'] 			= 'Rapot/Create';
 $route['simpan-rapot'] 			= 'Rapot/Save';
 $route['ubah-rapot'] 			= 'Rapot/Edit';
