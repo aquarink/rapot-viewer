@@ -49,6 +49,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['default_controller'] 	= 'Pengguna';
+$route['404_override'] 			= '';
+$route['translate_uri_dashes'] 	= FALSE;
+
+// AUTH
+$route['masuk'] 				= 'Pengguna/Login';
+$route['keluar'] 				= 'Pengguna/Logout';
+
+// PENGGUNA
+$route['ubah-password'] 		= 'Pengguna/UpdatePassword';
+
+// INSTANSI
+$route['instansi'] 				= 'Instansi/Update';
+
+// KELAS
+$route['tambah-kelas'] 			= 'Kelas/Create';
+$route['simpan-kelas'] 			= 'Kelas/Save';
+$route['ubah-kelas'] 			= 'Kelas/Edit';
+$route['update-kelas'] 			= 'Kelas/Update';
+$route['hapus-kelas'] 			= 'Kelas/Delete';
+
+// SISWA
+$route['tambah-siswa'] 			= 'Siswa/Create';
+$route['simpan-siswa'] 			= 'Siswa/Save';
+$route['ubah-siswa'] 			= 'Siswa/Edit';
+$route['update-siswa'] 			= 'Siswa/Update';
+$route['hapus-siswa'] 			= 'Siswa/Delete';
+
+// RAPOT
+$route['tambah-rapot'] 			= 'Rapot/Create';
+$route['simpan-rapot'] 			= 'Rapot/Save';
+$route['ubah-rapot'] 			= 'Rapot/Edit';
+$route['update-rapot'] 			= 'Rapot/Update';
+$route['hapus-rapot'] 			= 'Rapot/Delete';
