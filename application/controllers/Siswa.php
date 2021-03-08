@@ -20,9 +20,13 @@ class Siswa extends CI_Controller
 	public function index() {
 		// sesi_check();
 		
+		$list_siswa = $this->Siswa_Model->Cari_Siswa_Id_Instansi($this->session->userdata('id_instansi'));
+
 		$push_data = array(
 			'page' 			=> 'siswa/index',
 			'breadcrumb'	=> 'Daftar Siswa',
+			'siswa'			=> true,
+			'siswa_data'	=> $list_siswa,
 		);
 
 		$this->load->view('templates/page', $push_data);
@@ -30,10 +34,14 @@ class Siswa extends CI_Controller
 
 	public function Create() {
 		// sesi_check();
+
+		$list_kls = $this->Kelas_Model->Cari_Kelas_Id_Instansi($this->session->userdata('id_instansi'));
 		
 		$push_data = array(
 			'page' 			=> 'siswa/tambah',
 			'breadcrumb'	=> 'Tambah Data Siswa',
+			'siswa'			=> true,
+			'kelas_data'	=> $list_kls,
 		);
 
 		$this->load->view('templates/page', $push_data);
@@ -42,29 +50,119 @@ class Siswa extends CI_Controller
 	public function Save() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('siswa/save', $push_data);
+		$msg = '';
+		
+		if($this->input->post('urutanKelasTxt') != '' && $this->input->post('namaSiswaTxt') != '' && $this->input->post('kodeSiswaTxt') != '') {
+
+			$id_instansi 	= $this->session->userdata('id_instansi');
+			$urutanKelasTxt = $this->input->post('urutanKelasTxt');			
+			$kodeSiswaTxt 	= $this->input->post('kodeSiswaTxt');
+			$namaSiswaTxt 	= $this->input->post('namaSiswaTxt');
+
+
+			$cek_siswa = $this->Siswa_Model->Cari_Siswa_Like($id_instansi, $kodeSiswaTxt, $namaSiswaTxt);
+			if(count($cek_siswa) > 0) {
+				$msg = 'Siswa sudah terdaftar';
+			} else {
+				$ins_siswa = $this->Siswa_Model->Tambah_Siswa($id_instansi, $urutanKelasTxt, $kodeSiswaTxt, $namaSiswaTxt);
+				if($ins_siswa) {
+
+					$username = $kodeSiswaTxt;
+					$password = md5($kodeSiswaTxt);
+
+					$add_pengguna = $this->Pengguna_Model->Tambah_Pengguna($id_instansi, $username, $password, 'siswa');
+					if($tambah_inst) {
+						$msg = 'Tambah Siswa sukses';
+					} else {
+						$msg = 'Tambah akun Siswa gagal';
+					}
+				} else {
+					$msg = 'Tambah siswa gagal';
+				}
+			}
+		} else {
+			$msg = 'Form harus diisi';
+		}
+		
+		if($msg != '') {
+			redirect(base_url('siswa?msg='.$msg));
+		}
 	}
 
 	public function Edit() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('siswa/edit', $push_data);
+		$cari_siswa = $this->Siswa_Model->Cari_Siswa_Id($this->input->get('id'));
+		if(count($cari_siswa) > 0) {
+
+			$list_kls = $this->Kelas_Model->Cari_Kelas_Id_Instansi($this->session->userdata('id_instansi'));
+
+			$push_data = array(
+				'page' 			=> 'siswa/edit',
+				'breadcrumb'	=> 'Update Data Siswa',
+				'siswa'			=> true,
+				'siswa_data'	=> $cari_siswa,
+				'kelas_data'	=> $list_kls,
+			);
+
+			$this->load->view('templates/page', $push_data);
+		} else {
+			redirect(base_url('siswa?msg=data siswa tidak ditemukan'));
+		}
 	}
 
 	public function Update() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('siswa/update', $push_data);
+		$msg = '';
+		
+		if($this->input->post('id') != '' && $this->input->post('urutanKelasTxt') != '' && $this->input->post('namaSiswaTxt') != '' && $this->input->post('kodeSiswaTxt') != '') {
+
+			$id 			= $this->input->post('id');
+			$id_instansi 	= $this->session->userdata('id_instansi');
+			$urutanKelasTxt = $this->input->post('urutanKelasTxt');			
+			$kodeSiswaTxt 	= $this->input->post('kodeSiswaTxt');
+			$namaSiswaTxt 	= $this->input->post('namaSiswaTxt');
+
+			$cek_siswa = $this->Siswa_Model->Cari_Siswa_Id($id);
+			if(count($cek_siswa) > 0) {
+
+				$upd = $this->Siswa_Model->Update_Siswa($id, $id_instansi, $urutanKelasTxt, $kodeSiswaTxt, $namaSiswaTxt);
+				if($upd) {
+					$msg = 'Update data Siswa berhasil';
+				} else {
+					$msg = 'Update data Siswa gagal';
+				}
+			} else {
+				$msg = 'Siswa tidak ditemukan';
+			}
+		} else {
+			$msg = 'Form harus diisi';
+		}
+		
+		if($msg != '') {
+			redirect(base_url('siswa?msg='.$msg));
+		}
 	}
 
 	public function Delete() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('siswa/delete', $push_data);
+		$cari_siswa = $this->Siswa_Model->Cari_Siswa_Id($this->input->get('id'));
+		if(count($cari_siswa) > 0) {
+			$del = $this->Siswa_Model->Hapus_Siswa($this->input->get('id'));
+			if($del) {
+				$msg = 'Delete data Siswa berhasil';
+			} else {
+				$msg = 'Delete data Siswa gagal';
+			}
+		} else {
+			$msg = 'Siswa tidak ditemukan';
+		}
+
+		if($msg != '') {
+			redirect(base_url('siswa?msg='.$msg));
+		}
 	}
 
 	// SESSION

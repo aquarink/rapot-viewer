@@ -12,20 +12,24 @@
                                 <tr>
                                     <th style="width: 10px">Kode</th>
                                     <th>Nama Instansi</th>
+                                    <th>Username</th>
                                     <th>Alamat</th>
                                     <th style="width: 150px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>SDN 1 Ciputat</td>
-                                    <td>Jalan Ciputat</td>
-                                    <td>
-                                        <a href="" class="btn btn-info">Edit</a>
-                                        <a href="" class="btn btn-danger">Hapus</a>
-                                    </td>
-                                </tr>
+                                <?php if(count($instansi_data) > 0) { foreach ($instansi_data as $key => $val) { ?>
+                                    <tr>
+                                        <td><?php echo $val->id; ?></td>
+                                        <td><?php echo ucwords($val->nama_instansi); ?></td>
+                                        <td><?php echo ucwords($val->username); ?></td>
+                                        <td><?php echo $val->alamat; ?></td>
+                                        <td>
+                                            <a href="<?php echo base_url('ubah-instansi?id='.$val->id); ?>" class="btn btn-info">Edit</a>
+                                            <a href="<?php echo base_url('hapus-instansi?id='.$val->id); ?>" class="btn btn-danger">Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php }} ?>
                             </tbody>
                         </table>
                     </div>

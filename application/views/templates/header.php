@@ -63,14 +63,14 @@
                             <img src="<?php echo base_url('assets/adminlte/'); ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                            <a href="#" class="d-block"><?php echo $this->session->userdata('name'); ?></a>
                         </div>
                     </div>
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('rapot'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('dashboard'); ?>" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
                                     <p>
                                         Dashboard
@@ -78,7 +78,9 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+
+                            <?php if($this->session->userdata('role') == 'admin') { ?>
+                            <li class="nav-item has-treeview <?php echo isset($instansi) ? 'menu-open' : '';?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-archway"></i>
                                     <p>
@@ -101,8 +103,10 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php } ?>
 
-                            <li class="nav-item has-treeview">
+                            <?php if($this->session->userdata('role') == 'instansi') { ?>
+                            <li class="nav-item has-treeview <?php echo isset($kelas) ? 'menu-open' : '';?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-person-booth"></i>
                                     <p>
@@ -126,7 +130,7 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item has-treeview">
+                            <li class="nav-item has-treeview <?php echo isset($siswa) ? 'menu-open' : '';?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-chalkboard-teacher"></i>
                                     <p>
@@ -150,7 +154,7 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item has-treeview">
+                            <li class="nav-item has-treeview <?php echo isset($rapot) ? 'menu-open' : '';?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-address-card"></i>
                                     <p>
@@ -173,9 +177,10 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php } ?>
 
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?php echo base_url('keluar'); ?>" class="nav-link">
                                     <i class="nav-icon far fa-circle text-danger"></i>
                                     <p>Keluar</p>
                                 </a>

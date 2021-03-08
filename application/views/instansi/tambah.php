@@ -11,8 +11,12 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form role="form" action="<?php echo base_url('simpan-instansi'); ?>" method="POST">
                         <div class="card-body">
+                            <!-- <div class="form-group">
+                                <label for="kodeInstansiLabel">Kode Instansi</label>
+                                <input type="text" class="form-control" id="kodeInstansiLabel" name="kodeInstansiTxt" placeholder="Kode instansi">
+                            </div> -->
                             <div class="form-group">
                                 <label for="namaInstansiLabel">Nama Instansi</label>
                                 <input type="text" class="form-control" id="namaInstansiLabel" name="namaInstansiTxt" placeholder="Nama instansi">

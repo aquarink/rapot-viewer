@@ -19,10 +19,14 @@ class Rapot extends CI_Controller
 
 	public function index() {
 		// sesi_check();
+
+		$list_rapot = $this->Rapot_Model->List_Rapot($this->session->userdata('id_instansi'));
 		
 		$push_data = array(
 			'page' 			=> 'rapot/index',
 			'breadcrumb'	=> 'Dashboard',
+			'rapot'			=> true,
+			'rapot_data'	=> $list_rapot,
 		);
 
 		$this->load->view('templates/page', $push_data);
@@ -34,6 +38,7 @@ class Rapot extends CI_Controller
 		$push_data = array(
 			'page' 			=> 'rapot/tambah',
 			'breadcrumb'	=> 'Tambah Data Rapot',
+			'rapot'			=> true,
 		);
 
 		$this->load->view('templates/page', $push_data);
@@ -49,8 +54,13 @@ class Rapot extends CI_Controller
 	public function Edit() {
 		// sesi_check();
 		
-		$push_data = array();
-		$this->load->view('rapot/edit', $push_data);
+		$push_data = array(
+			'page' 			=> 'rapot/edit',
+			'breadcrumb'	=> 'Update Data Rapot',
+			'rapot'			=> true,
+		);
+
+		$this->load->view('templates/page', $push_data);
 	}
 
 	public function Update() {

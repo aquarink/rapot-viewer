@@ -19,6 +19,12 @@ class Pengguna_Model extends CI_Model
         return $query->result();
     }
 
+    public function Last_Id_Pengguna() {        
+        $sql = "SELECT id FROM pengguna_tb ORDER BY id DESC LIMIT 1";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function Tambah_Pengguna($id_instansi, $username, $password, $role) {
 
         $sql = "INSERT INTO pengguna_tb(id_instansi, username, password, role) "

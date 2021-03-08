@@ -35,15 +35,37 @@ class Pengguna extends CI_Controller
 			$usernameTxt = $this->input->post('usernameTxt');
 			$passwordTxt = $this->input->post('passwordTxt');
 
-			$cek_pengguna = $this->Pengguna_Model->Login_Pengguna($usernameTxt, $passwordTxt);
+			$cek_pengguna = $this->Pengguna_Model->Login_Pengguna($usernameTxt, md5($passwordTxt));
 			if(count($cek_pengguna) > 0) {
+
+				$name = 'Not found';
 				
 				foreach ($cek_pengguna as $key => $val) {
+
+					if($val->role == 'admin') {
+						$name = 'Administrator';
+					} elseif($val->role == 'instansi') {
+						$inst = $this->Instansi_Model->Cari_Instansi($val->id_instansi);
+						if(count($inst) > 0) {
+							foreach ($inst as $k => $v) {
+								$name = $v->nama_instansi;
+							}
+						}
+					} elseif($val->role == 'siswa') {
+						$sws = $this->Siswa_Model->Cari_Siswa_Id($val->id, $val->id_instansi);
+						if(count($sws) > 0) {
+							foreach ($sws as $k => $v) {
+								$name = $v->nama_siswa;
+							}
+						}
+					}
+
 					$sess_array = array(
 						'id' 			=> $val->id,
 						'id_instansi' 	=> $val->id_instansi,
 						'username' 		=> $val->username,
-						'role'			=> $val->role
+						'role'			=> $val->role,
+						'name' 			=> $name,
 					);
 
 					$this->session->set_userdata($sess_array);
@@ -57,16 +79,59 @@ class Pengguna extends CI_Controller
 		} else {
 			$msg = 'Form harus diisi';
 		}
-		print_r($this->input->post());
+		
 		if($msg != '') {
-			// redirect(base_url('masuk?msg='.$msg));
+			redirect(base_url('?msg='.$msg));
 		}
 	}
 
 	public function Dashboard() {
+
+		$ext_data = array();
+
+		switch ($this->session->userdata('role')) {
+			case 'admin':
+				// admin
+				$pagenya = 'pengguna/index';
+				break;
+			
+			case 'instansi':
+				// instansi
+				$pagenya = 'pengguna/dash_instansi';
+
+				// DATA INSTANSI
+				$cari_data_ins = $this->Instansi_Model->Cari_Instansi($this->session->userdata('id_instansi'));
+				if(count($cari_data_ins) > 0) {
+					foreach ($cari_data_ins as $key => $val) {
+						$ext_data['nama'] = $val->nama_instansi;
+					}
+				}
+
+				// DATA KELAS INSTANSI
+				$cari_data_kls = $this->Kelas_Model->Cari_Kelas_Id_Instansi($this->session->userdata('id_instansi'));
+				$ext_data['kelas'] = count($cari_data_kls);
+
+				// DATA SISWA KELAS INSTANSI
+				$cari_data_sws = $this->Siswa_Model->Cari_Siswa_Id_Instansi($this->session->userdata('id_instansi'));
+				$ext_data['siswa'] = count($cari_data_sws);
+
+				// DATA RAPOT SISWA KELAS INSTANSI
+				$cari_data_rpt = $this->Rapot_Model->Cari_Rapot_id_instansi($this->session->userdata('id_instansi'));
+				$ext_data['rapot'] = count($cari_data_rpt);
+
+				break;
+
+			default:
+				// siswa
+				$pagenya = 'pengguna/dash_siswa';
+				break;
+		}
+
+
 		$push_data = array(
-			'page' 			=> 'pengguna/index',
+			'page' 			=> $pagenya,
 			'breadcrumb'	=> 'Dashboard',
+			'ext_data' 		=> $ext_data,
 		);
 
 		$this->load->view('templates/page', $push_data);
@@ -75,7 +140,7 @@ class Pengguna extends CI_Controller
 	public function Logout() {
 		if($this->session->userdata('id') != '') {
 			$this->session->sess_destroy();
-			redirect(base_url('masuk'));
+			redirect(base_url());
 		}
 	}
 

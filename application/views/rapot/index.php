@@ -10,22 +10,27 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">Kode</th>
+                                    <th style="width: 10px">Kode Siswa</th>
+                                    <th>Nama Siswa</th>
                                     <th>Nama Instansi</th>
-                                    <th>Alamat</th>
+                                    <th>Lihat Raport</th>
                                     <th style="width: 150px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php if(count($rapot_data) > 0) { foreach ($rapot_data as $key => $val) { ?>
                                 <tr>
-                                    <td>1.</td>
-                                    <td>SDN 1 Ciputat</td>
-                                    <td>Jalan Ciputat</td>
+                                    <td><?php echo $val->kode_siswa; ?></td>
+                                    <td><?php echo ucwords($val->nama_siswa); ?></td>
+                                    <td><?php echo ucwords($val->nama_instansi); ?></td>
+                                    <td><button class="btn btn-success"><i class="fa fa-eyes"></i> Lihat Rapot</button></td>
+                                    
                                     <td>
-                                        <a href="" class="btn btn-info">Edit</a>
-                                        <a href="" class="btn btn-danger">Hapus</a>
+                                        <a href="<?php echo base_url('ubah-rapot?id='.$val->id); ?>" class="btn btn-info">Edit</a>
+                                        <a href="<?php echo base_url('hapus-rapot?id='.$val->id); ?>" class="btn btn-danger">Hapus</a>
                                     </td>
                                 </tr>
+                                <?php }} ?>
                             </tbody>
                         </table>
                     </div>

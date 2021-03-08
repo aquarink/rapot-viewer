@@ -13,6 +13,18 @@ class Rapot_Model extends CI_Model
         return $query->result();
     }
 
+    public function List_Rapot($id_instansi) {        
+        $sql = "SELECT rpt.*, ins.id idinstansi, ins.nama_instansi, kls.nama_kelas, kls.kode_kelas FROM rapot_tb rpt LEFT JOIN instansi_tb ins ON ins.id = rpt.id_instansi LEFT JOIN kelas_tb kls ON kls.id = rpt.id_kelas WHERE rpt.id_instansi = ".$this->db->escape($id_instansi)."";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function Cari_Rapot_id_instansi($id_instansi) {        
+        $sql = "SELECT * FROM rapot_tb WHERE id_instansi = ".$this->db->escape($id_instansi)."";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function Tambah_Rapot($id_instansi, $id_siswa, $id_kelas, $path_file_rapot) {
 
         $sql = "INSERT INTO rapot_tb(id_instansi, id_siswa, id_kelas, path_file_rapot) "
@@ -33,7 +45,7 @@ class Rapot_Model extends CI_Model
 
     public function Hapus_Rapot($id, $id_instansi, $id_siswa, $id_kelas) {        
         $sql = "DELETE FROM rapot_tb WHERE id = ".$this->db->escape($id)." AND id_instansi = ".$this->db->escape($id_instansi)." AND id_siswa = ".$this->db->escape($id_siswa)." AND id_kelas = ".$this->db->escape($id_kelas)." LIMIT 1";         
-        $query = $this->db->query($sql);
-        return $query->result();
+        $this->db->query($sql);
+        return $this->db->affected_rows();
     }
 }
