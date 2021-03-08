@@ -35,5 +35,59 @@
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/chart.js/Chart.min.js"></script>
         <!-- PAGE SCRIPTS -->
         <script src="<?php echo base_url('assets/adminlte/'); ?>dist/js/pages/dashboard2.js"></script>
+        <!-- Select2 -->
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/select2/js/select2.full.min.js"></script>
+        <!-- bs-custom-file-input -->
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#pilihSiswa').select2()
+            })
+
+            $(document).ready(function() {
+
+                $("#btnUnggahRapot").attr("disabled", true);
+
+                $('#btnCheck').click(function() {
+                    if($(this).prop("checked") == true){
+                        console.log("Checkbox is checked.");
+                        $("#btnUnggahRapot").removeAttr("disabled");
+                    } else if($(this).prop("checked") == false) {
+                        console.log("Checkbox is unchecked.");
+                        $("#btnUnggahRapot").attr("disabled", true);
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+
+                $("#btnUpdateRapot").attr("disabled", true);
+
+                $('#btnCheckUpdate').click(function() {
+                    if($(this).prop("checked") == true){
+                        console.log("Checkbox is checked.");
+                        $("#btnUpdateRapot").removeAttr("disabled");
+                    } else if($(this).prop("checked") == false) {
+                        console.log("Checkbox is unchecked.");
+                        $("#btnUpdateRapot").attr("disabled", true);
+                    }
+                });
+            });
+        </script>
+
+        <?php if(isset($rapot)) { ?>
+
+            <script src="<?php echo base_url('assets/adminlte/'); ?>pdfjs/build/pdf.js"></script>
+
+            <script src="<?php echo base_url('assets/adminlte/'); ?>pdfjs/build/pdf.worker.js"></script>
+
+            <script type="text/javascript">
+                
+
+
+            </script>
+
+        <?php } ?>
     </body>
 </html>

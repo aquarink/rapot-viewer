@@ -19,6 +19,12 @@ class Siswa_Model extends CI_Model
         return $query->result();
     }
 
+    public function Cari_Siswa_Kode_Siswa($kode_siswa) {        
+        $sql = "SELECT sis.*, ins.nama_instansi, kls.id idkls, kls.nama_kelas, kls.kode_kelas FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi LEFT JOIN kelas_tb kls ON kls.id = sis.id_kelas WHERE sis.kode_siswa = ".$this->db->escape($kode_siswa)."";           
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function Cari_Siswa_Id_Instansi($id_instansi) {        
         $sql = "SELECT sis.*, ins.nama_instansi, kls.id idkls, kls.nama_kelas, kls.kode_kelas FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi LEFT JOIN kelas_tb kls ON kls.id = sis.id_kelas WHERE sis.id_instansi = ".$this->db->escape($id_instansi)."";         
         $query = $this->db->query($sql);

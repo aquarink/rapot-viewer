@@ -52,7 +52,7 @@ class Pengguna extends CI_Controller
 							}
 						}
 					} elseif($val->role == 'siswa') {
-						$sws = $this->Siswa_Model->Cari_Siswa_Id($val->id, $val->id_instansi);
+						$sws = $this->Siswa_Model->Cari_Siswa($val->id_instansi, $val->username);
 						if(count($sws) > 0) {
 							foreach ($sws as $k => $v) {
 								$name = $v->nama_siswa;
@@ -124,6 +124,8 @@ class Pengguna extends CI_Controller
 			default:
 				// siswa
 				$pagenya = 'pengguna/dash_siswa';
+
+				$ext_data = $this->Siswa_Model->Cari_Siswa_Kode_Siswa($this->session->userdata('username'));
 				break;
 		}
 
