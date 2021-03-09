@@ -7,6 +7,12 @@ class Rapot_Model extends CI_Model
         $this->load->database();
     }
 
+    public function All_Rapot() {
+        $sql = "SELECT COUNT(id) jml FROM rapot_tb";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function Cari_Rapot($id_instansi, $kode_siswa) {        
         $sql = "SELECT rpt.*, sws.kode_siswa, sws.nama_siswa, kls.nama_kelas, kls.kode_kelas FROM rapot_tb rpt LEFT JOIN siswa_tb sws ON sws.id = rpt.id_siswa LEFT JOIN kelas_tb kls ON kls.id = rpt.id_kelas WHERE rpt.id_instansi = ".$this->db->escape($id_instansi)." AND sws.kode_siswa = ".$this->db->escape($kode_siswa)."";         
         $query = $this->db->query($sql);

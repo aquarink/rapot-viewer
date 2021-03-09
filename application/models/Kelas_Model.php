@@ -7,6 +7,12 @@ class Kelas_Model extends CI_Model
         $this->load->database();
     }
 
+    public function All_Kelas() {
+        $sql = "SELECT COUNT(id) jml FROM kelas_tb";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function Cari_Kelas($id_instansi, $kode_kelas) {        
         $sql = "SELECT * FROM kelas_tb WHERE id_instansi = ".$this->db->escape($id_instansi)." AND kode_kelas = ".$this->db->escape($kode_kelas)." LIMIT 1";         
         $query = $this->db->query($sql);

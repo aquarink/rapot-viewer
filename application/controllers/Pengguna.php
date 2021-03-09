@@ -94,6 +94,23 @@ class Pengguna extends CI_Controller
 			case 'admin':
 				// admin
 				$pagenya = 'pengguna/index';
+
+				// DATA INSTANSI
+				$cari_data_ins 			= $this->Instansi_Model->All_Instnsi();
+				$ext_data['instansi'] 	= $cari_data_ins[0]->jml;
+
+				// DATA KELAS INSTANSI
+				$cari_data_kls 			= $this->Kelas_Model->All_Kelas();
+				$ext_data['kelas'] 		= $cari_data_kls[0]->jml;
+
+				// DATA SISWA KELAS INSTANSI
+				$cari_data_sws 			= $this->Siswa_Model->All_Siswa();
+				$ext_data['siswa'] 		= $cari_data_sws[0]->jml;
+
+				// DATA RAPOT SISWA KELAS INSTANSI
+				$cari_data_rpt 			= $this->Rapot_Model->All_Rapot();
+				$ext_data['rapot'] 		= $cari_data_rpt[0]->jml;
+
 				break;
 			
 			case 'instansi':

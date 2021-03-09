@@ -7,6 +7,12 @@ class Instansi_Model extends CI_Model
         $this->load->database();
     }
 
+    public function All_Instnsi() {
+        $sql = "SELECT COUNT(id) jml FROM instansi_tb";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function Cari_Instansi($id) {        
         $sql = "SELECT * FROM instansi_tb WHERE id = ".$this->db->escape($id)." LIMIT 1";         
         $query = $this->db->query($sql);

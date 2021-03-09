@@ -7,6 +7,12 @@ class Siswa_Model extends CI_Model
         $this->load->database();
     }
 
+    public function All_Siswa() {
+        $sql = "SELECT COUNT(id) jml FROM siswa_tb";         
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function Cari_Siswa($id_instansi, $kode_siswa) {        
         $sql = "SELECT * FROM siswa_tb WHERE id_instansi = ".$this->db->escape($id_instansi)." AND kode_siswa = ".$this->db->escape($kode_siswa)." LIMIT 1";         
         $query = $this->db->query($sql);

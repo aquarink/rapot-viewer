@@ -8,7 +8,7 @@
                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-archway"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Instansi</span>
-                        <span class="info-box-number">10</span>
+                        <span class="info-box-number"><?php echo isset($ext_data['instansi']) ? $ext_data['instansi'] : 'Loading';  ?></span> 
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -20,7 +20,7 @@
                     <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-person-booth"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Kelas</span>
-                        <span class="info-box-number">1,000</span>
+                        <span class="info-box-number"><?php echo isset($ext_data['kelas']) ? $ext_data['kelas'] : 'Loading';  ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -34,7 +34,7 @@
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-chalkboard-teacher"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Siswa</span>
-                        <span class="info-box-number">30.000</span>
+                        <span class="info-box-number"><?php echo isset($ext_data['siswa']) ? $ext_data['siswa'] : 'Loading';  ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -46,7 +46,7 @@
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-address-card"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">File Rapot</span>
-                        <span class="info-box-number">30.000</span>
+                        <span class="info-box-number"><?php echo isset($ext_data['rapot']) ? $ext_data['rapot'] : 'Loading';  ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
