@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Rapot Viewer Dashboard - PKM Universitas Pamulang</title>
+        <link rel="shortcut icon" href="https://e-learningc.unpam.ac.id/pluginfile.php?file=%2F1%2Ftheme_edumy%2Ffavicon%2F1614762061%2F532381c292d340838aebb8d2476134e4%20%281%29.png">
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/'); ?>plugins/fontawesome-free/css/all.min.css">
         <!-- overlayScrollbars -->
