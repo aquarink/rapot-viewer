@@ -59,7 +59,8 @@ $route['keluar'] 				= 'Pengguna/Logout';
 $route['dashboard'] 			= 'Pengguna/Dashboard';
 
 // PENGGUNA
-$route['ubah-password'] 		= 'Pengguna/UpdatePassword';
+$route['ubah-password'] 		= 'Pengguna/EditPassword';
+$route['update-password'] 		= 'Pengguna/UpdatePassword';
 
 // INSTANSI
 $route['instansi'] 				= 'Instansi';

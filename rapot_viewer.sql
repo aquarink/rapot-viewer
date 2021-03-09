@@ -63,16 +63,17 @@ CREATE TABLE `pengguna_tb` (
   `role` enum('admin','siswa','instansi') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pengguna_tb` */
 
 insert  into `pengguna_tb`(`id`,`id_instansi`,`username`,`password`,`role`,`created_at`) values 
-(1,99999,'admin','21232f297a57a5a743894a0e4a801fc3','admin','2021-03-08 14:08:29'),
-(9,4,'amturanlas','376cf788d80da767fbf3cc53d6e83628','instansi','2021-03-08 14:08:48'),
+(1,99999,'admin','e219b56989281a7846dd836161d7a2bd','admin','2021-03-09 09:58:03'),
+(9,4,'amturanlas','e219b56989281a7846dd836161d7a2bd','instansi','2021-03-09 10:00:50'),
 (10,5,'agpsnniass','a25b03b57099e4865e1b685a11236026','instansi','2021-03-08 14:30:58'),
-(11,4,'123456','e10adc3949ba59abbe56e057f20f883e','siswa','2021-03-08 16:14:46'),
-(12,4,'123457','f1887d3f9e6ee7a32fe5e76f4ab80d63','siswa','2021-03-08 16:15:11');
+(11,4,'123456','e219b56989281a7846dd836161d7a2bd','siswa','2021-03-09 10:21:15'),
+(12,4,'123457','f1887d3f9e6ee7a32fe5e76f4ab80d63','siswa','2021-03-08 16:15:11'),
+(13,4,'212121','0f5aaaf14d9a2d371853e46119abba27','siswa','2021-03-09 10:07:51');
 
 /*Table structure for table `rapot_tb` */
 
@@ -82,16 +83,17 @@ CREATE TABLE `rapot_tb` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_instansi` bigint(20) NOT NULL,
   `id_siswa` bigint(20) NOT NULL,
+  `id_kelas` bigint(20) NOT NULL,
   `path_file_rapot` text NOT NULL,
   `dilihat` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `rapot_tb` */
 
-insert  into `rapot_tb`(`id`,`id_instansi`,`id_siswa`,`path_file_rapot`,`dilihat`,`created_at`) values 
-(2,4,6,'assets/images/rapot/4_1_123457__2021-03-08-12-24-27.pdf',NULL,'2021-03-08 18:24:27');
+insert  into `rapot_tb`(`id`,`id_instansi`,`id_siswa`,`id_kelas`,`path_file_rapot`,`dilihat`,`created_at`) values 
+(3,4,6,1,'assets/images/rapot/4__123457__2021-03-09-04-16-14.pdf',NULL,'2021-03-09 10:16:14');
 
 /*Table structure for table `siswa_tb` */
 
@@ -100,18 +102,18 @@ DROP TABLE IF EXISTS `siswa_tb`;
 CREATE TABLE `siswa_tb` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_instansi` bigint(20) NOT NULL,
-  `id_kelas` bigint(20) NOT NULL,
   `kode_siswa` varchar(100) NOT NULL,
   `nama_siswa` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `siswa_tb` */
 
-insert  into `siswa_tb`(`id`,`id_instansi`,`id_kelas`,`kode_siswa`,`nama_siswa`,`created_at`) values 
-(5,4,1,'123456','Pandu','2021-03-08 16:14:46'),
-(6,4,1,'123457','Tri yang agung','2021-03-08 16:15:11');
+insert  into `siswa_tb`(`id`,`id_instansi`,`kode_siswa`,`nama_siswa`,`created_at`) values 
+(5,4,'123456','Pandu','2021-03-08 16:14:46'),
+(6,4,'123457','Tri yang agung','2021-03-08 16:15:11'),
+(7,4,'212121','Pebri edit','2021-03-09 10:08:00');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

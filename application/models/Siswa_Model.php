@@ -14,19 +14,19 @@ class Siswa_Model extends CI_Model
     }
 
     public function Cari_Siswa_Id($id) {        
-        $sql = "SELECT sis.*, ins.nama_instansi, kls.id idkls, kls.nama_kelas, kls.kode_kelas FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi LEFT JOIN kelas_tb kls ON kls.id = sis.id_kelas WHERE sis.id = ".$this->db->escape($id)."";           
+        $sql = "SELECT sis.*, ins.nama_instansi FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi WHERE sis.id = ".$this->db->escape($id)."";           
         $query = $this->db->query($sql);
         return $query->result();
     }
 
     public function Cari_Siswa_Kode_Siswa($kode_siswa) {        
-        $sql = "SELECT sis.*, ins.nama_instansi, kls.id idkls, kls.nama_kelas, kls.kode_kelas FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi LEFT JOIN kelas_tb kls ON kls.id = sis.id_kelas WHERE sis.kode_siswa = ".$this->db->escape($kode_siswa)."";           
+        $sql = "SELECT sis.*, ins.nama_instansi FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi WHERE sis.kode_siswa = ".$this->db->escape($kode_siswa)."";           
         $query = $this->db->query($sql);
         return $query->result();
     }
 
     public function Cari_Siswa_Id_Instansi($id_instansi) {        
-        $sql = "SELECT sis.*, ins.nama_instansi, kls.id idkls, kls.nama_kelas, kls.kode_kelas FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi LEFT JOIN kelas_tb kls ON kls.id = sis.id_kelas WHERE sis.id_instansi = ".$this->db->escape($id_instansi)."";         
+        $sql = "SELECT sis.*, ins.nama_instansi FROM siswa_tb sis LEFT JOIN instansi_tb ins ON ins.id = sis.id_instansi WHERE sis.id_instansi = ".$this->db->escape($id_instansi)."";         
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -43,20 +43,19 @@ class Siswa_Model extends CI_Model
         return $query->result();
     }
 
-    public function Tambah_Siswa($id_instansi, $id_kelas, $kode_siswa, $nama_siswa) {
+    public function Tambah_Siswa($id_instansi, $kode_siswa, $nama_siswa) {
 
-        $sql = "INSERT INTO siswa_tb(id_instansi, id_kelas, kode_siswa, nama_siswa) "
+        $sql = "INSERT INTO siswa_tb(id_instansi, kode_siswa, nama_siswa) "
         . "VALUES("
         . "" . $this->db->escape($id_instansi) . ", "
-        . "" . $this->db->escape($id_kelas) . ", "
         . "" . $this->db->escape($kode_siswa) . ", "
         . "" . $this->db->escape($nama_siswa) . ")";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
 
-    public function Update_Siswa($id, $id_instansi, $id_kelas, $kode_siswa, $nama_siswa) {
-        $sql = "UPDATE siswa_tb SET id_kelas = ".$this->db->escape($id_kelas).", kode_siswa = ".$this->db->escape($kode_siswa).", nama_siswa = ".$this->db->escape($nama_siswa)." WHERE id = ".$this->db->escape($id)." AND id_instansi = ".$this->db->escape($id_instansi)."";
+    public function Update_Siswa($id, $id_instansi, $kode_siswa, $nama_siswa) {
+        $sql = "UPDATE siswa_tb SET kode_siswa = ".$this->db->escape($kode_siswa).", nama_siswa = ".$this->db->escape($nama_siswa)." WHERE id = ".$this->db->escape($id)." AND id_instansi = ".$this->db->escape($id_instansi)."";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }

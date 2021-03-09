@@ -34,7 +34,7 @@
         <!-- ChartJS -->
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/chart.js/Chart.min.js"></script>
         <!-- PAGE SCRIPTS -->
-        <script src="<?php echo base_url('assets/adminlte/'); ?>dist/js/pages/dashboard2.js"></script>
+        <!-- <script src="<?php echo base_url('assets/adminlte/'); ?>dist/js/pages/dashboard2.js"></script> -->
         <!-- Select2 -->
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/select2/js/select2.full.min.js"></script>
         <!-- bs-custom-file-input -->

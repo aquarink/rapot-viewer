@@ -23,18 +23,19 @@
                                     <?php }} ?>
                                 </select>
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input name="fileRapot" type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Pilih File PDF</span>
+                            <div class="form-group">
+                                <label for="namaKelasLabel">Pilih Kelas</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" name="pilihKelasTxt">
+                                            <option selected="" disabled="">Pilih kelas</option>
+                                            <?php if(count($kelas_data) > 0) { foreach ($kelas_data as $key => $val) { ?>
+                                                <option value="<?php echo $val->id; ?>"><?php echo $val->nama_kelas; ?></option>
+                                            <?php } } ?>
+                                        </select>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="form-group">
                                 <label for="fileRapotLabel">File Rapot</label>
                                 <input type="file" class="form-control" id="fileRapotLabel" name="fileRapot" placeholder="Nama siswa / siswi">

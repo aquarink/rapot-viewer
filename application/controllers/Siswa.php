@@ -52,10 +52,9 @@ class Siswa extends CI_Controller
 		
 		$msg = '';
 		
-		if($this->input->post('urutanKelasTxt') != '' && $this->input->post('namaSiswaTxt') != '' && $this->input->post('kodeSiswaTxt') != '') {
+		if($this->input->post('namaSiswaTxt') != '' && $this->input->post('kodeSiswaTxt') != '') {
 
-			$id_instansi 	= $this->session->userdata('id_instansi');
-			$urutanKelasTxt = $this->input->post('urutanKelasTxt');			
+			$id_instansi 	= $this->session->userdata('id_instansi');	
 			$kodeSiswaTxt 	= $this->input->post('kodeSiswaTxt');
 			$namaSiswaTxt 	= $this->input->post('namaSiswaTxt');
 
@@ -64,7 +63,7 @@ class Siswa extends CI_Controller
 			if(count($cek_siswa) > 0) {
 				$msg = 'Siswa sudah terdaftar';
 			} else {
-				$ins_siswa = $this->Siswa_Model->Tambah_Siswa($id_instansi, $urutanKelasTxt, $kodeSiswaTxt, $namaSiswaTxt);
+				$ins_siswa = $this->Siswa_Model->Tambah_Siswa($id_instansi, $kodeSiswaTxt, $namaSiswaTxt);
 				if($ins_siswa) {
 
 					$username = $kodeSiswaTxt;
@@ -116,18 +115,17 @@ class Siswa extends CI_Controller
 		
 		$msg = '';
 		
-		if($this->input->post('id') != '' && $this->input->post('urutanKelasTxt') != '' && $this->input->post('namaSiswaTxt') != '' && $this->input->post('kodeSiswaTxt') != '') {
+		if($this->input->post('id') != '' && $this->input->post('namaSiswaTxt') != '' && $this->input->post('kodeSiswaTxt') != '') {
 
 			$id 			= $this->input->post('id');
-			$id_instansi 	= $this->session->userdata('id_instansi');
-			$urutanKelasTxt = $this->input->post('urutanKelasTxt');			
+			$id_instansi 	= $this->session->userdata('id_instansi');		
 			$kodeSiswaTxt 	= $this->input->post('kodeSiswaTxt');
 			$namaSiswaTxt 	= $this->input->post('namaSiswaTxt');
 
 			$cek_siswa = $this->Siswa_Model->Cari_Siswa_Id($id);
 			if(count($cek_siswa) > 0) {
 
-				$upd = $this->Siswa_Model->Update_Siswa($id, $id_instansi, $urutanKelasTxt, $kodeSiswaTxt, $namaSiswaTxt);
+				$upd = $this->Siswa_Model->Update_Siswa($id, $id_instansi, $kodeSiswaTxt, $namaSiswaTxt);
 				if($upd) {
 					$msg = 'Update data Siswa berhasil';
 				} else {

@@ -12,8 +12,6 @@
                                 <tr>
                                     <th style="width: 10px">Kode Instansi</th>
                                     <th>Nama Instansi</th>
-                                    <th>Nama Kelas</th>
-                                    <th>Kode Kelas</th>
                                     <th>Nama Siswa</th>
                                     <th>Kode Siswa</th>
                                     <th style="width: 150px">Action</th>
@@ -24,8 +22,6 @@
                                     <tr>
                                         <td><?php echo $val->id_instansi; ?></td>
                                         <td><?php echo ucwords($val->nama_instansi); ?></td>
-                                        <td><?php echo $val->nama_kelas; ?></td>
-                                        <td><?php echo $val->kode_kelas; ?></td>
                                         <td><?php echo ucwords($val->nama_siswa); ?></td>
                                         <td><?php echo ucwords($val->kode_siswa); ?></td>
                                         <td>

@@ -34,14 +34,17 @@ class Rapot extends CI_Controller
 
 	public function Create() {
 		// sesi_check();
-
+ 
 		$list_siswa = $this->Siswa_Model->Cari_Siswa_Id_Instansi($this->session->userdata('id_instansi'));
+
+		$list_kls = $this->Kelas_Model->Cari_Kelas_Id_Instansi($this->session->userdata('id_instansi'));
 		
 		$push_data = array(
 			'page' 			=> 'rapot/tambah',
 			'breadcrumb'	=> 'Tambah Data Rapot',
 			'rapot'			=> true,
 			'siswa_data'	=> $list_siswa,
+			'kelas_data'	=> $list_kls,
 		);
 
 		$this->load->view('templates/page', $push_data);
@@ -55,7 +58,8 @@ class Rapot extends CI_Controller
 		if($this->input->post('idSiswa') != '') {
 
 			$id_instansi 	= $this->session->userdata('id_instansi');
-			$id_siswa 		= $this->input->post('idSiswa');			
+			$id_siswa 		= $this->input->post('idSiswa');
+			$pilihKelasTxt 	= $this->input->post('pilihKelasTxt');
 			$fileRapot 		= $_FILES['fileRapot'];
 
 			// CHECK THUMBNAIL IMAGE TRUE
@@ -89,13 +93,13 @@ class Rapot extends CI_Controller
 						}
 
 
-						$file_rename = $val->id_instansi."_".$val->id_kelas."_".$val->kode_siswa."_".$val->nama_siswa_clean."_".date('Y-m-d-H-i-s').".".$ext;
+						$file_rename = $id_instansii."_".$pilihKelasTxt."_".$val->kode_siswa."_".$val->nama_siswa_clean."_".date('Y-m-d-H-i-s').".".$ext;
 
 						if(move_uploaded_file($file_tmp, $folderImage."/".$file_rename)) {
 
 							$path_file_rapot = $folderImage."/".$file_rename;
 
-							$ins_rapot = $this->Rapot_Model->Tambah_Rapot($id_instansi, $id_siswa, $path_file_rapot);
+							$ins_rapot = $this->Rapot_Model->Tambah_Rapot($id_instansi, $id_siswa, $pilihKelasTxt, $path_file_rapot);
 							if($ins_rapot) {
 								$msg = 'Data rapot berhasil disimpan';
 							} else {
