@@ -19,7 +19,18 @@
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Select2 -->
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/select2/js/select2.full.min.js"></script>
+        <!-- Bootstrap4 Duallistbox -->
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+        <!-- InputMask -->
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/moment/moment.min.js"></script>
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
         <!-- overlayScrollbars -->
+        <!-- date-range-picker -->
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- bootstrap color picker -->
+        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
         <!-- AdminLTE App -->
         <script src="<?php echo base_url('assets/adminlte/'); ?>dist/js/adminlte.js"></script>
@@ -35,8 +46,7 @@
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/chart.js/Chart.min.js"></script>
         <!-- PAGE SCRIPTS -->
         <!-- <script src="<?php echo base_url('assets/adminlte/'); ?>dist/js/pages/dashboard2.js"></script> -->
-        <!-- Select2 -->
-        <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/select2/js/select2.full.min.js"></script>
+        
         <!-- bs-custom-file-input -->
         <script src="<?php echo base_url('assets/adminlte/'); ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
@@ -78,9 +88,9 @@
 
         <?php if(isset($rapot)) { ?>
 
-            <script src="<?php echo base_url('assets/adminlte/'); ?>pdfjs/build/pdf.js"></script>
+            <script src="<?php echo base_url('assets/'); ?>pdfjs/build/pdf.js"></script>
 
-            <script src="<?php echo base_url('assets/adminlte/'); ?>pdfjs/build/pdf.worker.js"></script>
+            <script src="<?php echo base_url('assets/'); ?>pdfjs/build/pdf.worker.js"></script>
 
             <script type="text/javascript">
                 
