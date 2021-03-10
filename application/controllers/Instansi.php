@@ -88,7 +88,7 @@ class Instansi extends CI_Controller
 		}
 		
 		if($msg != '') {
-			redirect(base_url('tambah-instansi?msg='.$msg));
+			redirect(base_url('instansi?msg='.$msg));
 		}
 	}
 

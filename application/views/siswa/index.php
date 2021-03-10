@@ -4,6 +4,19 @@
         <!-- Info boxes -->
         <div class="row">
             <div class="col-md-12">
+
+                <?php if(isset($_GET['msg'])) { ?>
+                <div class="row">
+                    <div class="card-body">
+                        <div class="alert alert-info alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-info"></i> Pesan</h5>
+                            <?php echo $_GET['msg']; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+                
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -26,9 +39,26 @@
                                         <td><?php echo ucwords($val->kode_siswa); ?></td>
                                         <td>
                                             <a href="<?php echo base_url('ubah-siswa?id='.$val->id); ?>" class="btn btn-info">Edit</a>
-                                            <a href="<?php echo base_url('hapus-siswa?id='.$val->id); ?>" class="btn btn-danger">Hapus</a>
+                                            <button data-toggle="modal" data-target=".delete<?php echo $val->id; ?>" class="btn btn-danger">Hapus</button>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade delete<?php echo $val->id; ?>">
+                                        <div class="modal-dialog #delete<?php echo $val->id; ?>">
+                                            <div class="modal-content bg-danger">
+                                                <div class="modal-body">
+                                                    <b>Anda yakin ingin menghapus data ini ?</b>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                                                    <a href="<?php echo base_url('hapus-siswa?id='.$val->id); ?>" class="btn btn-warning">Ya</a>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
                                 <?php }} ?>
                             </tbody>
                         </table>

@@ -4,6 +4,19 @@
         <!-- Info boxes -->
         <div class="row">
             <div class="col-md-12">
+
+                <?php if(isset($_GET['msg'])) { ?>
+                <div class="row">
+                    <div class="card-body">
+                        <div class="alert alert-info alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-info"></i> Pesan</h5>
+                            <?php echo $_GET['msg']; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+                
                 <!-- general form elements -->
                 <div class="card card-warning">
                     <div class="card-header">

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Rapot Viewer - PKM Universitas Pamulang</title>
+        <title>Rapor Viewer - PKM Universitas Pamulang</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
@@ -20,7 +20,7 @@
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="<?php echo base_url('assets/adminlte/'); ?>index2.html"><b>Rapot</b> <small>viewer</small></a>
+                <a href="<?php echo base_url('assets/adminlte/'); ?>index2.html"><b>Rapor</b> <small>viewer</small></a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
