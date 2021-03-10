@@ -92,10 +92,10 @@ class Rapot extends CI_Controller
 							mkdir($folderImage, 0777, TRUE);
 						}
 
-						$cek_duplicate = $this->Rapot_Model->Cari_Rapot_Duplicate($id_instansi, $id_kelas, $kode_siswa);
+						$cek_duplicate = $this->Rapot_Model->Cari_Rapot_Duplicate($id_instansi, $pilihKelasTxt, $id_siswa);
 						if(count($cek_duplicate) == 0) {
 
-							$file_rename = $id_instansii."_".$pilihKelasTxt."_".$val->kode_siswa."_".$val->nama_siswa_clean."_".date('Y-m-d-H-i-s').".".$ext;
+							$file_rename = $id_instansi."_".$pilihKelasTxt."_".$val->kode_siswa."_".$nama_siswa_clean."_".date('Y-m-d-H-i-s').".".$ext;
 
 							if(move_uploaded_file($file_tmp, $folderImage."/".$file_rename)) {
 
